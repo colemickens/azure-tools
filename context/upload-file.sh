@@ -37,7 +37,7 @@ if [[ -z "${container_exists}" ]]; then
 fi
 
 # Upload: Perform the upload
-if [[ ! -z "${XPLAT_UPLOAD}" ]]; then
+if [[ ! -z "${XPLAT_UPLOAD:-}" ]]; then
 	echo "*************** using xplat to upload *****************"
 	azure storage blob upload -q $file $container $(basename $file)
 else
