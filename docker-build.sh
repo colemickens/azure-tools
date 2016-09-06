@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eux -o pipefail
 
-apk add --update --no-cache git build-base wget jq ca-certificates parallel vim curl e2fsprogs go
+apk add --update --no-cache git build-base wget jq ca-certificates parallel vim curl go e2fsprogs xfsprogs ntfs-3g-progs
 
 apk add qemu-img --update-cache --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/main/ --allow-untrusted
 
