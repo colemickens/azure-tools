@@ -28,6 +28,7 @@ export AZURE_RESOURCE_GROUP=colemick-vhds2
 export AZURE_STORAGE_ACCOUNT=colemickvhds2
 export AZURE_STORAGE_CONTAINER=colemickvhds2
 export IMAGE_SIZE=10G
+export MKFS_TYPE=ext4 # (default: 'ext4'. possible: ['ext4', 'ntfs', 'xfs'])
 
 ./make-vhd.sh
 
