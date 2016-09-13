@@ -4,6 +4,8 @@
 
 Collection of random tools for Azure.
 
+Note, some of these scripts assume they're executing in busybox. (`cleanup.sh`, for example, uses timeout which has different syntax under busybox)
+
 #### `./cleanup.sh`
 
 This will delete resource groups whose name contains the first argument.
