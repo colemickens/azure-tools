@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -eou -o pipefail
 
@@ -9,9 +9,9 @@ if [[ -z "${AZURE_SUBSCRIPTION_ID}" ]]; then
 	exit -1
 fi
 
-rgs=($(azure group list --subscription-id="${AZURE_SUBSCRIPTION_ID}" --json | jq -r ".[].name | select(contains(\"${FILTER}\"))" -))
+rgs=($(azure group list --subscription="${AZURE_SUBSCRIPTION_ID}" --json | jq -r ".[].name | select(contains(\"${FILTER}\"))" -))
 if ! (( ${#rgs[@]} > 0 )); then
-	echo "${SCRIPTNAME}: No matching groups. Exiting!"
+	echo "There were no matching groups. Exiting!"
 	exit 0
 fi
 
@@ -24,4 +24,4 @@ if [[ "${CONFIRM}" != "yes" ]]; then
 	exit -1
 fi
 
-parallel -j 8 --progress timeout 5 azure group delete --quiet --subscription "${AZURE_SUBSCRIPTION_ID}" ::: ${rgs[@]}
+parallel -j 8 --progress timeout -t 5 azure group delete --quiet --subscription "${AZURE_SUBSCRIPTION_ID}" ::: ${rgs[@]}
