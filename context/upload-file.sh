@@ -8,6 +8,7 @@ echo "\$AZURE_RESOURCE_GROUP=${AZURE_RESOURCE_GROUP}"
 echo "\$AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT}"
 echo "\$AZURE_STORAGE_CONTAINER=${AZURE_STORAGE_CONTAINER}"
 echo "\$BLOB_NAME=${BLOB_NAME}"
+echo "\$AZURE_LOCATION=${AZURE_LOCATION}"
 
 s="--subscription=${AZURE_SUBSCRIPTION_ID}"
 
@@ -22,7 +23,7 @@ fi
 account_exists=$(azure storage account show "${AZURE_STORAGE_ACCOUNT}" -g "${AZURE_RESOURCE_GROUP}" --json $s | jq '.serviceName' || true)
 if [[ -z "${account_exists}" ]]; then
 	echo "upload: creating storage account ${AZURE_STORAGE_ACCOUNT}"
-	azure storage account create -g "${AZURE_RESOURCE_GROUP}" --location 'west us 2' --kind Storage --sku-name LRS ${AZURE_STORAGE_ACCOUNT} $s
+	azure storage account create -g "${AZURE_RESOURCE_GROUP}" --location "${AZURE_LOCATION}" --kind Storage --sku-name LRS ${AZURE_STORAGE_ACCOUNT} $s
 fi
 
 # Upload: Retrieve Storage Account Key
