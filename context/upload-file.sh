@@ -16,7 +16,7 @@ s="--subscription=${AZURE_SUBSCRIPTION_ID}"
 rg_exists="$(azure group show "${AZURE_RESOURCE_GROUP}" --json $s || true)"
 if [[ -z "${rg_exists}" ]]; then
 	echo "upload: creating resource group ${AZURE_RESOURCE_GROUP}"
-	azure group create $s -n "${AZURE_RESOURCE_GROUP}" -l "westus2"
+	azure group create $s -n "${AZURE_RESOURCE_GROUP}" -l "${AZURE_LOCATION}"
 fi
 
 # Upload: Ensure Storage Account exists
