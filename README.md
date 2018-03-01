@@ -1,3 +1,11 @@
+# DEPRECATION NOTICE
+
+Don't use this. Really. Azure has managed disks now. Azure has a better CLI now.
+
+The only thing valuable in here is the cleanup script, which is destructive and you're better off reading/writing yourself. 
+
+I'll probably  delete this repo in the future, or archive it, or move it to junk repo, or something.
+
 # azure-tools
 
 ### Overview
